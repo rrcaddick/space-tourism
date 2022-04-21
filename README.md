@@ -4,7 +4,7 @@ Frontend Mentor Challenge - https://www.frontendmentor.io/challenges/space-touri
 
 # Skills showcased
 
-React
-Styled Components
-React Router Dom
-Mobile First Design
+* React
+* Styled Components
+* React Router Dom
+* Mobile First Design
