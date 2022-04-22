@@ -1,7 +1,8 @@
 import React from "react";
+import PageLayout from "components/common/PageLayout";
 
 const Technology = () => {
-  return <div>Technology</div>;
+  return <PageLayout>Technology</PageLayout>;
 };
 
 export default Technology;

@@ -1,7 +1,8 @@
 import React from "react";
+import PageLayout from "components/common/PageLayout";
 
 const Crew = () => {
-  return <div>Crew</div>;
+  return <PageLayout>Crew</PageLayout>;
 };
 
 export default Crew;
