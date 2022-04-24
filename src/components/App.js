@@ -16,6 +16,7 @@ import CrewMobile from "assets/crew/background-crew-mobile.jpg";
 import TechnologyDesktop from "assets/technology/background-technology-desktop.jpg";
 import TechnologyTablet from "assets/technology/background-technology-tablet.jpg";
 import TechnologyMobile from "assets/technology/background-technology-mobile.jpg";
+import PageLayout from "./common/PageLayout";
 
 const backgroundItems = {
   desktop: {
@@ -64,12 +65,13 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-size: 1.6rem;
-    width: 100vw;
+    max-width: 100vw;
     min-height: 100vh;
     background-image: url(${setBackground.bind(null, "mobile")});
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: left;
+    background-position: center;
+    overflow: hidden;
 
     @media (min-width: 768px) {
       background-image: url(${setBackground.bind(null, "tablet")});
@@ -83,25 +85,26 @@ const GlobalStyle = createGlobalStyle`
 
 const App = () => {
   const { pathname } = useLocation();
-  console.log(pathname);
 
   return (
     <>
       <GlobalStyle pathname={pathname} />
-      <Switch>
-        <Route path="/destination">
-          <Destination />
-        </Route>
-        <Route path="/crew">
-          <Crew />
-        </Route>
-        <Route path="/technology">
-          <Technology />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
+      <PageLayout>
+        <Switch>
+          <Route path="/destination">
+            <Destination />
+          </Route>
+          <Route path="/crew">
+            <Crew />
+          </Route>
+          <Route path="/technology">
+            <Technology />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </PageLayout>
     </>
   );
 };
