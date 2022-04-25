@@ -28,6 +28,7 @@ const MobileMenuIcon = styled.img`
   top: 3.3rem;
   right: 2.4rem;
   z-index: 10;
+
   @media (min-width: 768px) {
     display: none;
   }
@@ -36,6 +37,7 @@ const MobileMenuIcon = styled.img`
 const Logo = styled.img`
   width: 4rem;
   height: 4rem;
+  vertical-align: top;
 
   @media (min-width: 768px) {
     width: 4.8rem;
@@ -181,7 +183,7 @@ const Header = () => {
             <span>02</span> CREW
           </StyledLink>
           <StyledLink to="/technology" activeClassName="active" onClick={() => setMenuOpen((prevState) => !prevState)}>
-            <span>04</span> TECHNOLOGY
+            <span>03</span> TECHNOLOGY
           </StyledLink>
         </MenuItems>
       </Menu>

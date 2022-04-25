@@ -71,8 +71,8 @@ const GlobalStyle = createGlobalStyle`
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    overflow: hidden;
-
+    overflow-x: hidden;
+    
     @media (min-width: 768px) {
       background-image: url(${setBackground.bind(null, "tablet")});
     }
