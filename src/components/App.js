@@ -40,12 +40,12 @@ const backgroundItems = {
 };
 
 const setBackground = (screen, { pathname }) => {
-  switch (pathname) {
-    case "/destination":
+  switch (true) {
+    case pathname.includes("destination"):
       return backgroundItems[screen].destination;
-    case "/crew":
+    case pathname.includes("crew"):
       return backgroundItems[screen].crew;
-    case "/technology":
+    case pathname.includes("technology"):
       return backgroundItems[screen].technology;
     default:
       return backgroundItems[screen].home;
@@ -67,18 +67,25 @@ const GlobalStyle = createGlobalStyle`
     font-size: 1.6rem;
     max-width: 100vw;
     min-height: 100vh;
-    background-image: url(${setBackground.bind(null, "mobile")});
+    background: url(${setBackground.bind(null, "mobile")}), rgb(11,13,23);
+    background-blend-mode: difference;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     overflow-x: hidden;
     
     @media (min-width: 768px) {
-      background-image: url(${setBackground.bind(null, "tablet")});
+      background: url(${setBackground.bind(null, "tablet")}), rgb(11,13,23);
+      background-blend-mode: difference;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
 
     @media (min-width: 1440px) {
-      background-image: url(${setBackground.bind(null, "desktop")});
+      background: url(${setBackground.bind(null, "desktop")}), rgb(11,13,23);
+      background-blend-mode: difference;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
   }
 `;

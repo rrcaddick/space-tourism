@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Colors } from "themes";
+import { PageTitle, PageHeading, BodyText } from "components/common/styled";
+import { useHistory } from "react-router-dom";
 
 const HomeWrapper = styled.section`
   display: flex;
@@ -36,74 +38,8 @@ const Content = styled.div`
   }
 `;
 
-const SubTitle = styled.h2`
-  font-family: "Barlow Condensed", sans-serif;
-  font-weight: 400;
+const StyledPageTitle = styled(PageTitle)`
   color: ${Colors.Secondary};
-
-  // Mobile
-  font-size: 1.6rem;
-  line-height: 1.9rem;
-  letter-spacing: 0.27rem;
-
-  // Tablet
-  @media (min-width: 768px) {
-    font-size: 2rem;
-    line-height: 2.4rem;
-    letter-spacing: 0.3375rem;
-  }
-
-  // Desktop
-  @media (min-width: 1440px) {
-    font-size: 2.8rem;
-    line-height: 3.4rem;
-    letter-spacing: 0.4725rem;
-  }
-`;
-
-const Title = styled.h1`
-  font-family: "Bellefair", serif;
-  font-weight: 400;
-  color: ${Colors.Text};
-
-  // Mobile
-  font-size: 8rem;
-  line-height: 10rem;
-
-  // Tablet
-  @media (min-width: 768px) {
-    font-size: 15rem;
-    line-height: 15rem;
-  }
-
-  // Desktop
-  @media (min-width: 1440px) {
-    line-height: 17.2rem;
-  }
-`;
-
-const Description = styled.p`
-  font-family: "Barlow", sans-serif;
-  font-weight: 400;
-  color: ${Colors.Secondary};
-  max-width: 40rem;
-
-  // Mobile
-  font-size: 1.5rem;
-  line-height: 2.5rem;
-
-  // Tablet
-  @media (min-width: 768px) {
-    font-size: 1.6rem;
-    line-height: 2.8rem;
-    max-width: 70rem;
-  }
-
-  // Desktop
-  @media (min-width: 1440px) {
-    font-size: 1.8rem;
-    line-height: 3.2rem;
-  }
 `;
 
 const CTA = styled.button`
@@ -163,17 +99,23 @@ const CTA = styled.button`
 `;
 
 const Home = () => {
+  const history = useHistory();
+
+  const exploreHandler = () => {
+    history.push("/destination");
+  };
+
   return (
     <HomeWrapper>
       <Content>
-        <SubTitle>SO, YOU WANT TO TRAVEL TO</SubTitle>
-        <Title>SPACE</Title>
-        <Description>
+        <StyledPageTitle>SO, YOU WANT TO TRAVEL TO</StyledPageTitle>
+        <PageHeading size="lg">SPACE</PageHeading>
+        <BodyText>
           Let’s face it; if you want to go to space, you might as well genuinely go to outer space and not hover kind of
           on the edge of it. Well sit back, and relax because we’ll give you a truly out of this world experience!
-        </Description>
+        </BodyText>
       </Content>
-      <CTA>EXPLORE</CTA>
+      <CTA onClick={exploreHandler}>EXPLORE</CTA>
     </HomeWrapper>
   );
 };

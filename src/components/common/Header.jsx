@@ -27,7 +27,7 @@ const MobileMenuIcon = styled.img`
   position: absolute;
   top: 3.3rem;
   right: 2.4rem;
-  z-index: 10;
+  z-index: 11;
 
   @media (min-width: 768px) {
     display: none;
@@ -64,7 +64,7 @@ const Menu = styled.nav`
   flex-direction: column;
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(81.5485px);
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   transform: translateX(${(p) => (p.menuOpen ? "0%" : "100%")});
@@ -73,6 +73,7 @@ const Menu = styled.nav`
   padding-top: 11.8rem;
   padding-left: 3.2rem;
   transition: transform 0.3s linear;
+  z-index: 10;
 
   @media (min-width: 768px) {
     padding: 0 4.6rem 0 4.8rem;
@@ -120,6 +121,17 @@ const StyledLink = styled(NavLink)`
     font-weight: bold;
   }
 
+  ::after {
+    content: "";
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 0.3rem;
+    background: ${Colors.Text};
+    bottom: 0;
+    left: 0;
+  }
+
   @media (min-width: 768px) {
     font-size: 1.4rem;
     padding: 3.9rem 0 3.9rem 0;
@@ -127,25 +139,14 @@ const StyledLink = styled(NavLink)`
       display: none;
     }
 
-    &.active::before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 0.3rem;
-      background: ${Colors.Text};
-      bottom: 0;
-      left: 0;
+    :hover::after {
+      display: block;
+      opacity: 0.5;
     }
 
-    :hover::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 0.3rem;
-      background: ${Colors.Text};
-      opacity: 0.5;
-      bottom: 0;
-      left: 0;
+    &.active::after {
+      display: block;
+      opacity: 1;
     }
   }
   @media (min-width: 1440px) {
