@@ -77,7 +77,7 @@ const DestinationDetail = ({ type }) => {
       )}
       {type === "details" && (
         <>
-          <StyledPageHeading size="sm">{name}</StyledPageHeading>
+          <StyledPageHeading size="md">{name}</StyledPageHeading>
           <BodyText>{description}</BodyText>
           <Divider />
           <DestinationStats>

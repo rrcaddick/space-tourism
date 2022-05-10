@@ -31,7 +31,7 @@ export const PageHeading = styled.h1`
             line-height: 17.2rem;
           }
         `;
-      case "sm":
+      case "md":
         return css`
           // Mobile
           font-size: 5.6rem;
@@ -49,13 +49,32 @@ export const PageHeading = styled.h1`
             line-height: 11.5rem;
           }
         `;
+      case "sm":
+        return css`
+          // Mobile
+          font-size: 2.4rem;
+          line-height: 2.8rem;
+          text-transform: uppercase;
+
+          // Tablet
+          @media (min-width: 768px) {
+            font-size: 4rem;
+            line-height: 4.6rem;
+          }
+
+          // Desktop
+          @media (min-width: 1440px) {
+            font-size: 5.6rem;
+            line-height: 6.4rem;
+          }
+        `;
       case "x-sm":
         return css`
           font-size: 2.8rem;
           line-height: 3.2rem;
         `;
       default:
-        return "";
+        break;
     }
   }}
 `;
