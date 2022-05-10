@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { PageTitle } from "components/common/styled";
 import { Slider } from "components/common";
@@ -41,7 +41,7 @@ const SlideControls = styled.ul`
   @media (min-width: 768px) {
     top: 34rem;
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1440px) {
     bottom: 9.4rem;
     left: 16.5rem;
     align-items: flex-end;
@@ -61,13 +61,10 @@ const SlideControl = styled.span`
 const Crew = () => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [crewData, setCrewData] = useState([]);
-  const crewWrapperRef = useRef();
 
   useEffect(() => {
     // Simulate an API call
     setCrewData(Data.crew);
-
-    crewWrapperRef.current.focus();
   }, []);
 
   const slideHandler = (e) => {
@@ -76,7 +73,7 @@ const Crew = () => {
   };
 
   return (
-    <CrewWrapper onKeyDown={slideHandler} ref={crewWrapperRef}>
+    <CrewWrapper>
       <PageTitle>
         <span>02</span>Meet your crew
       </PageTitle>
