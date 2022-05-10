@@ -82,6 +82,9 @@ const SlideControl = styled.span`
 const Technology = () => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [technologyData, setTechnologyData] = useState([]);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
   const slideInterval = useRef();
 
   useEffect(() => {
@@ -109,8 +112,40 @@ const Technology = () => {
     setSlideIndex(+e.target.dataset.slide);
   };
 
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    clearInterval(slideInterval.current);
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    const maxSlide = technologyData.length - 1;
+    if (isLeftSwipe) {
+      setSlideIndex((prevIndex) => {
+        if (prevIndex === maxSlide) return 0;
+        return prevIndex + 1;
+      });
+    }
+
+    if (isRightSwipe) {
+      setSlideIndex((prevIndex) => {
+        if (prevIndex === 0) return maxSlide;
+        return prevIndex - 1;
+      });
+    }
+  };
+
   return (
-    <TechnologyWrapper>
+    <TechnologyWrapper onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
       <PageTitle>
         <span>03</span>Space launch 101
       </PageTitle>

@@ -61,6 +61,9 @@ const SlideControl = styled.span`
 const Crew = () => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [crewData, setCrewData] = useState([]);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
   let slideInterval = useRef();
 
   useEffect(() => {
@@ -88,8 +91,40 @@ const Crew = () => {
     setSlideIndex(+e.target.dataset.slide);
   };
 
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    clearInterval(slideInterval.current);
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    const maxSlide = crewData.length - 1;
+    if (isLeftSwipe) {
+      setSlideIndex((prevIndex) => {
+        if (prevIndex === maxSlide) return 0;
+        return prevIndex + 1;
+      });
+    }
+
+    if (isRightSwipe) {
+      setSlideIndex((prevIndex) => {
+        if (prevIndex === 0) return maxSlide;
+        return prevIndex - 1;
+      });
+    }
+  };
+
   return (
-    <CrewWrapper>
+    <CrewWrapper onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
       <PageTitle>
         <span>02</span>Meet your crew
       </PageTitle>
