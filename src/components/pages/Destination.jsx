@@ -73,7 +73,7 @@ const Menu = styled.nav`
   }
 `;
 
-const MenuItems = styled.ul`
+const MenuItems = styled.div`
   list-style: none;
   display: flex;
   gap: 2.7rem;
