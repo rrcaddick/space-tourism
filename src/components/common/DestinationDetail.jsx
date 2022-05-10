@@ -1,15 +1,22 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useParams } from "react-router-dom";
 import { Colors } from "themes";
 import { PageHeading, BodyText } from "./styled";
 import DestinationData from "../../data.json";
 import DestinationStat from "./DestinationStat";
 
-const ImgContainer = styled.div`
-  > img {
-    width: 100%;
+const rotation = keyframes`
+  0% {
+    transform: rotate(0deg)
   }
+  100% {
+    transform: rotate(3600deg)
+  }
+`;
+
+const ImgContainer = styled.div`
+  animation: ${rotation} 500s linear infinite;
   flex: 1 0 17rem;
   max-width: 30rem;
 
