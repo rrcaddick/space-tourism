@@ -46,7 +46,7 @@ const CTA = styled.button`
   border-radius: 50%;
   background: ${Colors.Text};
   border: none;
-  outline: none;
+  outline: 0;
   position: relative;
   cursor: pointer;
 
@@ -95,6 +95,10 @@ const CTA = styled.button`
 
   :hover::before {
     transform: scale(1.5);
+  }
+
+  :active {
+    outline: 0;
   }
 `;
 
