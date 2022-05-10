@@ -63,7 +63,7 @@ const Menu = styled.nav`
   display: flex;
   flex-direction: column;
   background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(81.5485px);
+  backdrop-filter: blur(80px);
   position: fixed;
   right: 0;
   top: 0;
@@ -90,8 +90,7 @@ const Menu = styled.nav`
   }
 `;
 
-const MenuItems = styled.ul`
-  list-style: none;
+const MenuItems = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.2rem;
