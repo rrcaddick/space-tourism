@@ -20,6 +20,10 @@ const ImgContainer = styled.div`
   flex: 1 0 17rem;
   max-width: 30rem;
 
+  > img {
+    width: 100%;
+  }
+
   @media (min-width: 768px) {
     flex: 1 0 30rem;
     max-width: 44.5rem;
