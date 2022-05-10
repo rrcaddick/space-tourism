@@ -4,7 +4,13 @@ Frontend Mentor Challenge - https://www.frontendmentor.io/challenges/space-touri
 
 # Skills showcased
 
-* React
-* Styled Components
-* React Router Dom
-* Mobile First Design
+- React
+  - Functional Components
+  - Hooks (useState, useEffect, useRef)
+- Styled Components
+  - Layout
+  - Reusable components
+- React Router Dom
+  - Routing
+  - Nested Routes
+- Mobile First Design
