@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { PageTitle } from "components/common/styled";
 import { Slider } from "components/common";
@@ -61,14 +61,30 @@ const SlideControl = styled.span`
 const Crew = () => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [crewData, setCrewData] = useState([]);
+  let slideInterval = useRef();
 
   useEffect(() => {
     // Simulate an API call
     setCrewData(Data.crew);
   }, []);
 
+  useEffect(() => {
+    const maxSlide = crewData.length - 1;
+
+    slideInterval.current = setInterval(() => {
+      setSlideIndex((prevIndex) => {
+        if (prevIndex === maxSlide) return 0;
+        return prevIndex + 1;
+      });
+    }, 5000);
+
+    return () => {
+      clearInterval(slideInterval.current);
+    };
+  }, [slideIndex, crewData]);
+
   const slideHandler = (e) => {
-    console.log(e);
+    clearInterval(slideInterval.current);
     setSlideIndex(+e.target.dataset.slide);
   };
 

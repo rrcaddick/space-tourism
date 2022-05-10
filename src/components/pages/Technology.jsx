@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { PageTitle } from "components/common/styled";
 import { Slider } from "components/common";
@@ -82,14 +82,30 @@ const SlideControl = styled.span`
 const Technology = () => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [technologyData, setTechnologyData] = useState([]);
+  const slideInterval = useRef();
 
   useEffect(() => {
     // Simulate an API call
     setTechnologyData(Data.technology);
   }, []);
 
+  useEffect(() => {
+    const maxSlide = technologyData.length - 1;
+
+    slideInterval.current = setInterval(() => {
+      setSlideIndex((prevIndex) => {
+        if (prevIndex === maxSlide) return 0;
+        return prevIndex + 1;
+      });
+    }, 5000);
+
+    return () => {
+      clearInterval(slideInterval.current);
+    };
+  }, [slideIndex, technologyData]);
+
   const slideHandler = (e) => {
-    console.log(e);
+    clearInterval(slideInterval.current);
     setSlideIndex(+e.target.dataset.slide);
   };
 
